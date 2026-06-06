@@ -36,13 +36,13 @@ import pandas as pd
 import json
 
 # CSVs
-historico = pd.read_csv(‘data/historico_atendimento.csv’)
-transacoes = pd.read_csv(‘data/transacoes.csv’)
+historico = pd.read_csv('data/historico_atendimento.csv')
+transacoes = pd.read_csv('data/transacoes.csv')
 
 # JSONs
-with open(‘data/perfil_investidor.json’, ‘r’, encoding= ‘utf-8’) as f:
+with open('data/perfil_investidor.json', 'r', encoding= 'utf-8') as f:
 	perfil = json.load(f)
-with open(‘data/produtos_financeiros.json’, ‘r’, encoding= ‘utf-8’) as f:
+with open('data/produtos_financeiros.json', 'r', encoding= 'utf-8') as f:
 	perfil = json.load(f)
 ```
 
