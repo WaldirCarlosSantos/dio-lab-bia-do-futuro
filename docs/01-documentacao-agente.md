@@ -69,7 +69,7 @@ flowchart TD
 ### Componentes
 
 | Componente | O que é | Porque usar |
-|------------|-----------|
+|------------|---------|-------------|
 | Interface | Streamlit (https://streamlit.io/) - web/mobile/WhatsApp | Painel gamificado para aocompanhar o progresso das metas |
 | LLM | Ollama (local) ou Claude Sonnet via API Anthropic | Melhor custo-benefício para conversas longas com contexto |
 | Perfil do Usuário | JSON com dados declarados pelo próprio usuário | Personaliza o plano sem precisar de integração bancária |
@@ -94,7 +94,7 @@ flowchart TD
 > O que o agente NÃO faz?
 
 | Limitação | Motivo |
-|------------|-----------|
+|-----------|--------|
 - | ❌ Não recomenda ações, FIIs ou criptoativos específicos | Resolução CVM 35 — exige habilitação regulatória |
 - | ❌ Não acessa contas bancárias nem realiza transações | Segurança e privacidade do usuário |
 - | ❌ Não garante rentabilidade ou retornos financeiros | O mercado tem riscos imprevisíveis |
