@@ -95,8 +95,8 @@ flowchart TD
 
 | Limitação | Motivo |
 |-----------|--------|
-- | ❌ Não recomenda ações, FIIs ou criptoativos específicos | Resolução CVM 35 — exige habilitação regulatória |
-- | ❌ Não acessa contas bancárias nem realiza transações | Segurança e privacidade do usuário |
-- | ❌ Não garante rentabilidade ou retornos financeiros | O mercado tem riscos imprevisíveis |
-- | ❌ Não armazena senhas ou dados bancários sensíveis | LGPD e boas práticas de segurança |
-- | ❌ Não substitui um profissional certificado (CFP/assessor) | Complementa, nunca substitui assessoria profissional |
+| ❌ Não recomenda ações, FIIs ou criptoativos específicos | Resolução CVM 35 — exige habilitação regulatória |
+| ❌ Não acessa contas bancárias nem realiza transações | Segurança e privacidade do usuário |
+| ❌ Não garante rentabilidade ou retornos financeiros | O mercado tem riscos imprevisíveis |
+| ❌ Não armazena senhas ou dados bancários sensíveis | LGPD e boas práticas de segurança |
+| ❌ Não substitui um profissional certificado (CFP/assessor) | Complementa, nunca substitui assessoria profissional |
