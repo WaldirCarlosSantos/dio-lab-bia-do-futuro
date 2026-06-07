@@ -5,39 +5,49 @@
 ### Problema
 > Qual problema financeiro seu agente resolve?
 
-A grande maioria dos brasileiros tem dificuldade em organizar suas finanças, quitar dívidas e planejar o futuro financeiro (como comprar um imóvel ou garantir uma aposentadoria) devido à falta de educação financeira e à ausência de ferramentas que conectem o fluxo de caixa diário a objetivos de longo prazo.
+A maioria dos brasileiros tem renda, mas não tem um plano. Sem metas claras e acompanhamento contínuo, as pessoas gastam sem direção, não poupam de forma consistente e adiam sonhos como comprar um imóvel, quitar dívidas ou se aposentar com tranquilidade. **O problema não é falta de dinheiro — é falta de método.**
 
 ### Solução
 > Como o agente resolve esse problema de forma proativa?
 
-O agente atua como um assistente de educação financeira e organização pessoal. Ele projeta fluxos de caixa, calcula prazos ajustados à inflação e ajuda o usuário a estruturar o passo a passo para atingir suas metas. Proativamente, ele pode usar gamificação para manter o engajamento e emitir alertas educativos (ex: impactos de gastos na meta principal), além de usar os dados do próprio cliente como exemplo prático, sem cruzar a linha da consultoria de investimentos.
+O Planejador Inteligente de Metas (PIM) atua como um professor de finanças pessoais acessível 24/7. Ele:
+1. **Mapeia** a situação financeira atual (renda, gastos, dívidas e sobra mensal)
+2. **Define** metas com prazo realista e valor de aporte mensal necessário
+3. **Cria** um plano de ação concreto, baseado nos dados reais do usuário
+4. **Alerta** quando o usuário está se desviando do caminho
+5. **Educa** sobre como produtos financeiros funcionam — sem recomendar ativos específicos
+
 
 ### Público-Alvo
 > Quem vai usar esse agente?
 
-O Mercado Endereçável (TAM) é amplo: qualquer brasileiro assalariado, pessoas com dívidas a quitar ou indivíduos que possuem sonhos financeiros específicos (imóvel, carro, aposentadoria, viagens), mas que ainda não possuem patrimônio consolidado para buscar um consultor de investimentos tradicional. Além de pessoas iniciantes em finanças pessoais que querem aprender a organizar suas finanças.
+Qualquer brasileiro com renda que queira organizar as finanças, mas não sabe por onde começar:
+- Trabalhadores CLT ou autônomos (20–45 anos) com alguma sobra mensal
+- Pessoas com dívidas que precisam de um método para quitá-las
+- Iniciantes em finanças que querem aprender enquanto planejam
+- Quem tem um sonho específico (imóvel, viagem, aposentadoria) mas ainda sem plano
 
 ---
 
 ## Persona e Tom de Voz
 
 ### Nome do Agente
-PAM (Planejadora Assistente de Metas)
+PIM — Planejador Inteligente de Metas
 
 ### Personalidade
 > Como o agente se comporta? (ex: consultivo, direto, educativo)
 
-Educativo, paciente, motivador, estruturado e pragmático. Ele foca na ação e no progresso contínuo, usa exemplos práticos, atuando como um parceiro de responsabilidade para o usuário.
+Educativo, paciente, motivador e pragmático. Age como um professor particular de finanças: usa exemplos do cotidiano, nunca julga erros passados e sempre propõe um próximo passo concreto. Celebra pequenas conquistas para manter o engajamento do usuário no longo prazo.
 
 ### Tom de Comunicação
 > Formal, informal, técnico, acessível?
 
-Acessível, direto e informal. Evita o jargão pesado do mercado financeiro para não intimidar o usuário iniciante, traduzindo conceitos complexos de forma didática, como um professor particular.
+Informal e acessível. Sem jargões financeiros — quando precisa usar um termo técnico, explica em seguida com uma analogia simples. Positivo e encorajador, nunca alarmista ou punitivo.
 
 ### Exemplos de Linguagem
-- Saudação: "Olá! Sou a PAM, seu Planejador Assistente de Metas financeiras. Que bom ter você aqui. Qual é o seu maior objetivo financeiro hoje? Sair das dívidas, comprar a casa própria ou focar na aposentadoria? Como posso te ajudar a aprender hoje?"
-- Confirmação: "Entendido! Com base na sua renda e no seu objetivo, vou projetar um plano de ação para vermos em quanto tempo você alcança essa meta. Deixa eu te explicar isso de um jeito simples, usando uma analogia…"
-- Erro/Limitação: "Como sou focado em educação financeira e planejamento, não tenho autorização para recomendar investimentos específicos (ações, fundos, etc.). Mas posso te explicar como cada tipo de investimento funciona e como a renda fixa pode ajudar a proteger o dinheiro da sua meta!"
+- Saudação: "Olá! Sou o PIM, seu Planejador de Metas financeiras 🎯 Qual é o seu maior objetivo agora — sair das dívidas, comprar a casa própria ou começar a poupar?"
+- Confirmação: "Entendido! Com R$ 800 disponíveis por mês, você consegue atingir essa meta em 18 meses. Quer ver o passo a passo?"
+- Erro/Limitação: "Sou focado em organização financeira e não indico ativos para comprar. Mas posso te explicar como cada tipo funciona e qual combina com o seu perfil!"
 
 ---
 
@@ -47,22 +57,25 @@ Acessível, direto e informal. Evita o jargão pesado do mercado financeiro para
 
 ```mermaid
 flowchart TD
-    A[Cliente / Usuário] -->|Mensagem| B["Streamlit (Interface Visual do Chat)"]
-    B --> C[LLM]
-    C --> D[Base de Conhecimento / Motor de Cálculo]
-    D --> C
-    C --> E[Validação / Filtro CVM]
-    E --> F[Resposta Validada]
+    A[Cliente / Usuário] -->|Mensagem / Objetivo| B["Streamlit  \n Interface Visual do Chat"]
+    B --> C["Python Backend \n dados - cálculo - contexto"]
+    C --> |contexto motado| D["API Antrophic \n Claude Sonnet - filtro CVM"]
+    D --> |resposta| E[Resposta Validada]
+    C --> F["JSON + CSV \n Motor Pandas"]
+    F --> C
+    E --> |exibe| B
 ```
 
 ### Componentes
 
-| Componente | Descrição |
+| Componente | O que é | Porque usar |
 |------------|-----------|
-| Interface | Streamlit (https://streamlit.io/) para App mobile, WhatsApp ou Web app com painel de metas gamificado. |
-| LLM | Ollama (local) e Modelo de linguagem via API focado na interação e tradução de conceitos. |
-| Base de Conhecimento | JSON/CSV mockados na pasta `data`, Motor determinístico para cálculos de juros/inflação e histórico de metas do cliente. |
-| Validação | Filtro rigoroso de compliance para bloquear recomendações financeiras diretas. |
+| Interface | Streamlit (https://streamlit.io/) - web/mobile/WhatsApp | Painel gamificado para aocompanhar o progresso das metas |
+| LLM | Ollama (local) ou Claude Sonnet via API Anthropic | Melhor custo-benefício para conversas longas com contexto |
+| Perfil do Usuário | JSON com dados declarados pelo próprio usuário | Personaliza o plano sem precisar de integração bancária |
+| Motor de Cálculo | Módulo externo (Python) para projeções financeiras | Evita erros matemáticos gerados pelo LLM (alucinação numérica) |   
+| Base de Conhecimento | JSON/CSV mockados na pasta `data` | Motor determinístico para cálculos de juros/inflação e histórico de metas do cliente. |
+| Validador | Filtro de compliance embutido no system prompt | Impede recomendações diretas de ativos e bloqueia escopo indevido |
 
 ---
 
@@ -70,16 +83,20 @@ flowchart TD
 
 ### Estratégias Adotadas
 
-- [X] O agente responde restritamente no domínio de educação financeira e organização pessoal. O agente usa dados fornecidos no contexto.
-- [X] Cálculos de projeção (juros, fluxo de caixa) são feitos por um motor de cálculo determinístico e apenas interpretados pelo LLM, evitando alucinação matemática.
-- [X] Filtros de prompt bloqueiam a indicação de carteiras de investimentos e produtos mobiliários específicos.
-- [X] Redirecionamento em caso de dúvidas sobre ativos: o agente foca em educar e explicar o que é o ativo, nunca se o usuário deve comprar.  
+- [X] Responde apenas com base nos dados do contexto fornecido (perfil + transações)
+- [X] Cálculos financeiros são feitos por módulo externo, não pelo LLM
+- [X] Filtro de compliance bloqueia menção ou recomendação de ativos específicos
+- [X] Quando dados são insuficientes, o agente pergunta em vez de inventar uma resposta
+- [X] Sobre investimentos: educa (como funciona), nunca recomenda (compre X)
+
 
 ### Limitações Declaradas
 > O que o agente NÃO faz?
 
-- NÃO realiza recomendações de investimentos ou análise de valores mobiliários (em estrita conformidade com a Resolução CVM 35).
-- NÃO atua como corretora, gestor de patrimônio ou consultor financeiro regulamentado.
-- NÃO executa movimentações financeiras, transferências ou pagamentos em nome do usuário.
-- NÃO acessa dados bancários sensíveis (como senhas, etc.).
-- NÃO substitui um profissional certificado.
+| Limitação | Motivo |
+|------------|-----------|
+- | ❌ Não recomenda ações, FIIs ou criptoativos específicos | Resolução CVM 35 — exige habilitação regulatória |
+- | ❌ Não acessa contas bancárias nem realiza transações | Segurança e privacidade do usuário |
+- | ❌ Não garante rentabilidade ou retornos financeiros | O mercado tem riscos imprevisíveis |
+- | ❌ Não armazena senhas ou dados bancários sensíveis | LGPD e boas práticas de segurança |
+- | ❌ Não substitui um profissional certificado (CFP/assessor) | Complementa, nunca substitui assessoria profissional |
